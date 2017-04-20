@@ -1,0 +1,17 @@
+{
+  "name": "registersystem",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Anderson Souza <https://www.github.com/jass2125>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
