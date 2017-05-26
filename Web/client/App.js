@@ -10,8 +10,10 @@ app.config(function($routeProvider) {
 	});
 });
 
-app.controller("NewCtrl", function($scope){
-	$scope.name = "New";
+app.controller("NewCtrl", function($scope, ListService){
+	$scope.student = [];
+	var student = $scope.student;
+	$scope.add = ListService.addStudent(student);
 });
 
 app.controller("ListCtrl", function($scope, ListService){
@@ -24,15 +26,11 @@ app.service("ListService", function(){
 		age: "21"
 	}];
 
+	this.addStudent = function(student){
+		students.push(student);
+	};
+
 	this.getStudents = function(){
 		return students;
 	};
-})
-/*
-app.controller("NewCtrl", function($scope){
-	$scope.name = "Anderson";
 });
-
-app.controller("NewCtrl", function($scope){
-	$scope.name = "Anderson";
-});*/
