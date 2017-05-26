@@ -14,10 +14,15 @@
             <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
             <param-value>true</param-value>
         </init-param>
+        <init-param>
+            <description>Multiple packages, separated by semicolon(;), can be specified in param-value</description>
+            <param-name>com.sun.jersey.config.property.packages</param-name>
+            <param-value>io.github.jass2125.register.webservices</param-value>
+        </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
         <servlet-name>Jersey App</servlet-name>
-        <url-pattern>/webapi/*</url-pattern>
+        <url-pattern>/webresources/*</url-pattern>
     </servlet-mapping>
 </web-app>

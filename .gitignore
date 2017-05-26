@@ -13,3 +13,5 @@ hs_err_pid*
 /Services/target
 /Services/nb-configuration.xml
 /Services/docs
+/Web/nbproject/private/
+/Web/bower_components/

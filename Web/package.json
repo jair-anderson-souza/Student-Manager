@@ -1,14 +1,11 @@
 {
-  "name": "registersystem",
+  "name": "web",
   "version": "1.0.0",
-  "description": "System to manage students on IFPB - Cajazeiras-PB",
-  "main": "app/index.html",
+  "description": "Web application with Angular.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Anderson Souza <https://www.github.com/jass2125>",
-  "license": "ISC",
-  "dependencies": {
-    "http-server": "^0.9.0"
-  }
+  "author": "",
+  "license": "ISC"
 }

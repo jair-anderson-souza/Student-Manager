@@ -1,20 +1,21 @@
 {
-  "name": "registersystem",
-  "description": "",
-  "main": "path/to/main.css",
+  "name": "web",
+  "description": "Web application with Angular.js",
+  "main": "index.js",
   "authors": [
-    "Anderson Souza <https://www.github.com/jass2125>"
+    "Anderson Souza <jair_anderson_bs@hotmail.com>"
   ],
   "license": "ISC",
-  "homepage": "public_html/index.html",
+  "homepage": "https://github.com/jass2125/RegistersSystem",
   "ignore": [
     "**/.*",
     "node_modules",
-    "public_html/bower_components",
+    "bower_components",
     "test",
     "tests"
   ],
   "dependencies": {
-    "angular": "1.6.4"
+    "angular": "angularjs#^1.6.4",
+    "bootstrap": "^3.3.7"
   }
 }
