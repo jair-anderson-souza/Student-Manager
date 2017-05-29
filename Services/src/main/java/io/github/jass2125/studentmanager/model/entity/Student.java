@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package io.github.jass2125.register.model.entity;
+package io.github.jass2125.studentmanager.model.entity;
 
-import io.github.jass2125.register.model.utils.NacionalitydeEnum;
-import io.github.jass2125.register.model.utils.GenderEnum;
+import io.github.jass2125.studentmanager.model.enums.GenderEnum;
+import io.github.jass2125.studentmanager.model.enums.NacionalitydeEnum;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -42,7 +42,7 @@ public class Student implements Serializable {
 
     @Enumerated(EnumType.STRING)
     @Column(length = 20)
-    private NacionalitydeEnum nacionalidade;
+    private NacionalitydeEnum nacionality;
 
     @Column(unique = true, length = 20)
     private String identityBr;
@@ -88,12 +88,12 @@ public class Student implements Serializable {
         this.birthday = birthday;
     }
 
-    public NacionalitydeEnum getNacionalidade() {
-        return nacionalidade;
+    public NacionalitydeEnum getNacionality() {
+        return nacionality;
     }
 
-    public void setNacionalidade(NacionalitydeEnum nacionalidade) {
-        this.nacionalidade = nacionalidade;
+    public void setNacionality(NacionalitydeEnum nacionality) {
+        this.nacionality = nacionality;
     }
 
     public String getIdentityBr() {

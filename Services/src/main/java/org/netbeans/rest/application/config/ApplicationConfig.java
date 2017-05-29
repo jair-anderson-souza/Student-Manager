@@ -5,7 +5,7 @@
  */
 package org.netbeans.rest.application.config;
 
-import io.github.jass2125.register.webservices.StudentWebService;
+import io.github.jass2125.studentmanager.webservices.StudentWebService;
 import java.util.HashSet;
 import java.util.Set;
 import javax.ws.rs.ApplicationPath;

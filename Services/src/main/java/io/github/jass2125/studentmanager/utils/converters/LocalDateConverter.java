@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package io.github.jass2125.register.utils.converters;
+package io.github.jass2125.studentmanager.utils.converters;
 
 import java.time.LocalDate;
 import java.sql.Date;
