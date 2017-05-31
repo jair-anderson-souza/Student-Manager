@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="pt-br" ng-app="app">
+<html lang="en" ng-app="App">
 <head>
-	<title>Cadastro de Alunos</title>	
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.11/angular.min.js"></script>
+	<title>Student Manager</title>
+	<meta charset="utf-8">	
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-messages.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.11/angular-route.js"></script>
-
-	<script src="App.js"></script>
-	<base href="/">
+	<link rel="stylesheet" href="assets/lib/bootstrap/dist/css/bootstrap.css">
+	<!--<script src="App.js"></script>-->
 	<!--
 	<script src="assets/lib/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script src="assets/lib/bootstrap/dist/js/bootstrap.js"></script>
@@ -24,14 +25,99 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	-->
 
+	<script>
+		
+		var app = angular.module("App", []);
+
+		app.controller("AppCtrl", function($scope){
+			
+			$scope.students = [
+				{id: 1, cpf: "823782734", gender: {desc: "MALE"}, identifyNumber : "289374829374", militaryDocumentNumber: "2874683745", nacionality: "BRAZIL", birthday: "10/10/2010", name: "Anderson"}
+			];
+
+			$scope.genders = [{desc: "MALE"}, {desc: "FEMALE"}];
+
+			$scope.addStudent = function(student){
+				console.log(student);
+				$scope.students.push(student);
+				delete $scope.student;
+			};
+		});
+
+
+	</script>
+
 </head>
-<body>
-	<ul>
-		<li><a href="#/list">List</a></li>
-		<li><a href="#/new">New</a></li>
-	</ul>	
-	
-	<div ng-view=""></div>
-	
+<body ng-controller="AppCtrl">
+	<div class="container">
+		<table class="table">
+			<thead>		
+				<tr>
+					<th>CPF</th>
+					<th>Gender</th>
+					<th>Identify Number</th>
+					<th>Military Document Number</th>
+					<th>Nacionality</th>
+					<th>Birthday</th>
+					<th>Name</th>
+				</tr>
+			</thead>
+		<tbody>
+			<tr ng-repeat="student in students">
+				<td>{{student.cpf}}</td>
+				<td>{{student.gender.desc}}</td>
+				<td>{{student.identifyNumber}}</td>
+				<td>{{student.militaryDocumentNumber}}</td>
+				<td>{{student.nacionality}}</td>
+				<td>{{student.birthday}}</td>
+				<td>{{student.name}}</td>
+			</tr>
+		</tbody>
+		</table>
+	<hr>
+
+		<form name="studentForm" class="form-horizontal">
+			<div class="form-group">
+				<label class="control-label">CPF</label>
+				<input type="text" class="form-control" ng-model="student.cpf" name="cpf" ng-required="true" ng-pattern="/^\d{9}-\d{2}$/">
+				<div ng-show="studentForm.cpf.$error.required && studentForm.cpf.$dirty" class="alert alert-danger">
+					Please fill out this field.
+				</div>
+				<div ng-show="studentForm.cpf.$error.pattern" class="alert alert-danger">
+					Format: XXXXXXXXX-XX
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label">Gender</label>
+				<select ng-model="student.gender" class="form-control" ng-options="gender.desc for gender in genders">
+					<option value="">Select a gender</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label class="control-label">Identify Number</label>
+				<input class="form-control" type="text" ng-model="student.identifyNumber" name="">
+			</div>
+			<div class="form-group">
+				<label class="control-label">Military Document Number</label>
+				<input type="text" class="form-control" ng-model="student.militaryDocumentNumber" name="militaryDocumentNumber">
+			</div>
+			<div class="form-group">
+				<label class="control-label">Nacionality</label>
+				<input class="form-control" type="text" ng-model="student.nacionality" name="nacionality">
+			</div>
+			<div class="form-group">
+				<label class="control-label">Birthday</label>
+				<input class="form-control" type="text" ng-model="student.birthday" name="birthday">
+			</div>
+			<div class="form-group">
+				<label class="control-label">Name</label>
+				<input class="form-control" type="text" ng-model="student.name" name="name">
+			</div>
+			<button class="btn btn-primary" ng-click="addStudent(student);" ng-disabled="!student.cpf">Submit</button>
+		</form>
+		
+		
+	</div>
+
 </body>
 </html>
