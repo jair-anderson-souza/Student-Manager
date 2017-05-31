@@ -87,33 +87,62 @@
 					Format: XXXXXXXXX-XX
 				</div>
 			</div>
+
 			<div class="form-group">
 				<label class="control-label">Gender</label>
-				<select ng-model="student.gender" class="form-control" ng-options="gender.desc for gender in genders">
+				<select ng-model="student.gender" name="gender" ng-required="true" class="form-control" ng-options="gender.desc for gender in genders">
 					<option value="">Select a gender</option>
 				</select>
+				<div ng-show="studentForm.gender.$error.required && studentForm.gender.$dirty" class="alert alert-danger">
+					Please select out this field.
+				</div>
 			</div>
+			
 			<div class="form-group">
 				<label class="control-label">Identify Number</label>
-				<input class="form-control" type="text" ng-model="student.identifyNumber" name="">
+				<input class="form-control" type="text" ng-model="student.identifyNumber" ng-required="true" 
+				ng-pattern="/^\d{13}$/" name="identifyNumber">
+				<div ng-show="studentForm.identifyNumber.$error.required && studentForm.identifyNumber.$dirty" class="alert alert-danger">
+					Please select out this field.
+				</div>
+				<div ng-show="studentForm.identifyNumber.$error.pattern && studentForm.identifyNumber.$dirty" class="alert alert-danger">
+					Only permitted until 13 characters
+				</div>
 			</div>
+
 			<div class="form-group">
 				<label class="control-label">Military Document Number</label>
-				<input type="text" class="form-control" ng-model="student.militaryDocumentNumber" name="militaryDocumentNumber">
+				<input type="text" class="form-control" ng-model="student.militaryDocumentNumber" name="militaryDocumentNumber" ng-required="true">
+				<div class="alert alert-danger" ng-show="studentForn.militaryDocumentNumber.$error.required && studentForm.militaryDocumentNumber.$dirty">
+					Please fill out this field.
+				</div>
 			</div>
+			
 			<div class="form-group">
 				<label class="control-label">Nacionality</label>
-				<input class="form-control" type="text" ng-model="student.nacionality" name="nacionality">
+				<input class="form-control" type="text" ng-model="student.nacionality" name="nacionality" ng-required="true">
+				<div ng-show="studentForm.nacionality.$error.required && studentForm.nacionality.$dirty">
+					Please fill out this field.
+				</div>
 			</div>
+			
 			<div class="form-group">
 				<label class="control-label">Birthday</label>
-				<input class="form-control" type="text" ng-model="student.birthday" name="birthday">
+				<input class="form-control" type="text" ng-model="student.birthday" ng-required="true" name="birthday">
+				<div class="alert alert-danger" ng-show="studentForm.birthday.$error.required && studentForm.birthday.$dirty">
+					Please fill out this field.
+				</div>
 			</div>
+			
 			<div class="form-group">
 				<label class="control-label">Name</label>
-				<input class="form-control" type="text" ng-model="student.name" name="name">
+				<input class="form-control" type="text" ng-model="student.name" ng-required="true" name="name">
+				<div class="alert alert-danger" ng-show="studentForm.name.$error.required && studentForm.name.$dirty">
+					Please fill out this field.
+				</div>
 			</div>
-			<button class="btn btn-primary" ng-click="addStudent(student);" ng-disabled="!student.cpf">Submit</button>
+			
+			<button class="btn btn-primary" ng-click="addStudent(student);" ng-disabled="studentForm.$invalid">Submit</button>
 		</form>
 		
 		
