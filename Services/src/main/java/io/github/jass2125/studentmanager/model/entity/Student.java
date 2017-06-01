@@ -45,7 +45,7 @@ public class Student implements Serializable {
     private NacionalitydeEnum nacionality;
 
     @Column(unique = true, length = 20)
-    private String identityBr;
+    private String identifyNumber;
 
     @Column(unique = false, length = 20)
     private String cpf;
@@ -96,12 +96,12 @@ public class Student implements Serializable {
         this.nacionality = nacionality;
     }
 
-    public String getIdentityBr() {
-        return identityBr;
+    public String getIdentifyNumber() {
+        return identifyNumber;
     }
 
-    public void setIdentityBr(String identityBr) {
-        this.identityBr = identityBr;
+    public void setIdentifyNumber(String identifyNumber) {
+        this.identifyNumber = identifyNumber;
     }
 
     public String getCpf() {

@@ -5,6 +5,7 @@
  */
 package org.netbeans.rest.application.config;
 
+import io.github.jass2125.studentmanager.filter.CorsFilter;
 import io.github.jass2125.studentmanager.webservices.StudentWebService;
 import java.util.HashSet;
 import java.util.Set;
@@ -27,6 +28,7 @@ public class ApplicationConfig extends Application {
     }
 
     private void addResources(Set<Class<?>> set) {
+        set.add(CorsFilter.class);
         set.add(StudentWebService.class);
     }
 
