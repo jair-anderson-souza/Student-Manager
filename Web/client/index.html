@@ -7,80 +7,36 @@
 	<script src="assets/lib/angular/angular-messages.min.js" type="text/javascript"></script>
 	<script src="assets/lib/angular/angular-route.min.js" type="text/javascript"></script>
 	<link rel="stylesheet" href="assets/lib/bootstrap/dist/css/bootstrap.css">
-	<script>
-		
-		var app = angular.module("App", ["ngMessages"]);
+	<script type="text/javascript" src="src/webapp/App.js"></script>
+	<script type="text/javascript" src="src/webapp/controllers/AppCtrl.js"></script>
+	<script type="text/javascript" src="src/webapp/controllers/ListCtrl.js"></script>
+	<script type="text/javascript" src="src/webapp/controllers/NewCtrl.js"></script>
+	<script type="text/javascript" src="src/webapp/routes/route.js"></script>
 
-		app.controller("AppCtrl", function($scope, $http){
-			
-			$scope.students = [
-				{id: 1, name: "Luana", cpf: "938723492-34", gender: "FEMALE", identifyNumber : "293874238423", militaryDocumentNumber: "8237483274", nacionality: "BRA", birthday: "04/03/2012"},
-				{id: 1, name: "Anderson", cpf: "823782734-45", gender: "MALE", identifyNumber : "289374829374", militaryDocumentNumber: "2874683745", nacionality: "BRA", birthday: "10/10/2010"}
-			];
-
-			$scope.genders = [{desc: "MALE"}, {desc: "FEMALE"}];
-
-			$scope.addStudent = function(student){
-				console.log(student);
-				$scope.students.push(student);
-				delete $scope.student;
-				$scope.studentForm.$setPristine();
-			};
-
-			var loadStudents = function(){
-				$http.get("http://localhost:8080/WebServices/webapi/student").then(function(response){
-					console.log(response.data);
-					$scope.students = response.data;
-					/**console.log(response.status);
-					console.log(response.statusText);
-					console.log(response.config);
-					console.log(response.headers);**/
-				}), function(response){
-					console.log("erro");
-				};
-
-			};
-
-			$scope.orderBy = function(field){
-				console.log(field);
-				$scope.orderedBy = field;
-				$scope.inverse = !$scope.inverse;
-			};
-		});
-
-
-	</script>
-
+	<style type="text/css">
+		.navbar-default{
+			background: rgb(35, 9, 2);
+			font-size: 16px;
+		}
+	</style>
 </head>
-<body ng-controller="AppCtrl">
-	<div class="container">
-		<input class="form-control" style="margin: 10px;" placeholder="Search here" ng-model="search" type="text" name="search">
-		<table class="table">
-			<thead>		
-				<tr>
-					<th><a href="" ng-click="orderBy('name');">Name</a></th>
-					<th><a href="" ng-click="orderBy('cpf')">CPF</a></th>
-					<th>Gender</th>
-					<th>Identify Number</th>
-					<th>Military Document Number</th>
-					<th>Nacionality</th>
-					<th>Birthday</th>
-				</tr>
-			</thead>
-		<tbody>
-			<tr ng-repeat="student in students | orderBy:orderedBy:inverse | filter:{name : search}">
-				<td>{{student.name}}</td>
-				<td>{{student.cpf}}</td>
-				<td>{{student.gender}}</td>
-				<td>{{student.identifyNumber}}</td>
-				<td>{{student.militaryDocumentNumber}}</td>
-				<td>{{student.nacionality}}</td>
-				<td>{{student.birthday}}</td>
-			</tr>
-		</tbody>
-		</table>
-	<hr>
 
+<body>
+	
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<ul class="nav navbar-nav">
+				<li><a style="color: white" href="#!list">List Students</a></li>
+				<li><a style="color: white" href="#!new">New Student</a></li>
+			</ul>
+		</div>
+	</nav>
+	
+	<div class="container">
+		<div ng-view=""></div>
+
+		
+<!--
 		<form name="studentForm" class="form-horizontal">
 			
 			<div class="form-group">
@@ -166,7 +122,7 @@
 			</div>
 			<button class="btn btn-primary" ng-click="addStudent(student);" ng-disabled="studentForm.$invalid">Submit</button>
 		</form>
-		
+	-->	
 		
 	</div>
 

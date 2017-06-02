@@ -1,6 +1,6 @@
 var app = angular.module("App");
 
-angular.module("App").controller("AppCtrl", function($scope, $http){
+angular.module("App").controller("ListCtrl", function($scope, $http){
 			
 	$scope.students = [
 		{id: 1, name: "Luana", cpf: "938723492-34", gender: "FEMALE", identifyNumber : "293874238423", militaryDocumentNumber: "8237483274", nacionality: "BRA", birthday: "04/03/2012"},

@@ -1,4 +1,28 @@
-<ul ng-repeat="student in students">
-	<li>{{student.name}}</li>
-	<li>{{student.age}}</li>
-</ul>
+<!-- O erro é nessa primeira linha 
+<input class="form-control" style="margin: 10px;" placeholder="Search here" ng-model="search" type="text" name="search">
+
+-->
+<table class="table">		
+	<thead>		
+		<tr>
+			<th><a href="" ng-click="orderBy('name');">Name</a></th>
+			<th><a href="" ng-click="orderBy('cpf')">CPF</a></th>
+			<th>Gender</th>
+			<th>Identify Number</th>
+			<th>Military Document Number</th>
+			<th>Nacionality</th>
+			<th>Birthday</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="student in students | orderBy:orderedBy:inverse | filter:{name : search}">
+			<td>{{student.name}}</td>
+			<td>{{student.cpf}}</td>
+			<td>{{student.gender}}</td>
+			<td>{{student.identifyNumber}}</td>
+			<td>{{student.militaryDocumentNumber}}</td>
+			<td>{{student.nacionality}}</td>
+			<td>{{student.birthday}}</td>
+		</tr>
+	</tbody>
+</table>
