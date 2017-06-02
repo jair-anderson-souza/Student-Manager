@@ -10,27 +10,5 @@ app.config(function($routeProvider) {
 	});
 });
 
-app.controller("NewCtrl", function($scope, ListService){
-	$scope.student = [];
-	var student = $scope.student;
-	$scope.add = ListService.addStudent(student);
-});
 
-app.controller("ListCtrl", function($scope, ListService){
-	$scope.students = ListService.getStudents();
-});
 
-app.service("ListService", function(){
-	var students = [{
-		name : "Anderson",
-		age: "21"
-	}];
-
-	this.addStudent = function(student){
-		students.push(student);
-	};
-
-	this.getStudents = function(){
-		return students;
-	};
-});
