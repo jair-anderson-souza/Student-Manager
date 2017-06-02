@@ -32,7 +32,8 @@
 		app.controller("AppCtrl", function($scope, $http){
 			
 			$scope.students = [
-				{id: 1, cpf: "823782734", gender: "MALE", identifyNumber : "289374829374", militaryDocumentNumber: "2874683745", nacionality: "BRAZIL", birthday: "10/10/2010", name: "Anderson"}
+				{id: 1, name: "Luana", cpf: "938723492-34", gender: "FEMALE", identifyNumber : "293874238423", militaryDocumentNumber: "8237483274", nacionality: "BRA", birthday: "04/03/2012"},
+				{id: 1, name: "Anderson", cpf: "823782734-45", gender: "MALE", identifyNumber : "289374829374", militaryDocumentNumber: "2874683745", nacionality: "BRA", birthday: "10/10/2010"}
 			];
 
 			$scope.genders = [{desc: "MALE"}, {desc: "FEMALE"}];
@@ -58,8 +59,11 @@
 
 			};
 
-			loadStudents();
-
+			$scope.orderBy = function(field){
+				console.log(field);
+				$scope.orderedBy = field;
+				$scope.inverse = !$scope.inverse;
+			};
 		});
 
 
@@ -68,11 +72,12 @@
 </head>
 <body ng-controller="AppCtrl">
 	<div class="container">
+		<input class="form-control" style="margin: 10px;" placeholder="Search here" ng-model="search" type="text" name="search">
 		<table class="table">
 			<thead>		
 				<tr>
-					<th>Name</th>
-					<th>CPF</th>
+					<th><a href="" ng-click="orderBy('name');">Name</a></th>
+					<th><a href="" ng-click="orderBy('cpf')">CPF</a></th>
 					<th>Gender</th>
 					<th>Identify Number</th>
 					<th>Military Document Number</th>
@@ -81,7 +86,7 @@
 				</tr>
 			</thead>
 		<tbody>
-			<tr ng-repeat="student in students">
+			<tr ng-repeat="student in students | orderBy:orderedBy:inverse | filter:{field : search}">
 				<td>{{student.name | uppercase}}</td>
 				<td>{{student.cpf}}</td>
 				<td>{{student.gender}}</td>
@@ -143,7 +148,7 @@
 						Please select out this field.	
 					</div>
 					<div class="alert alert-danger" ng-message="pattern">
-						Only permitted until 13 characters	
+						Only permitted until 13 numbers	
 					</div>
 				</div>
 			</div>
