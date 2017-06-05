@@ -9,21 +9,26 @@ import io.github.jass2125.studentmanager.beans.StudentDao;
 import io.github.jass2125.studentmanager.model.entity.Student;
 import io.github.jass2125.studentmanager.model.exceptions.PersistenceException;
 import java.util.List;
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
+import javax.persistence.QueryHint;
+import org.eclipse.persistence.config.QueryHints;
 
 /**
  *
  * @author Anderson Souza
  */
+@Stateless
+@Remote(StudentDao.class)
 public class StudentDaoImp implements StudentDao {
 //
 
-    private EntityManager emd = Persistence.createEntityManagerFactory("pu1").createEntityManager();
+    private EntityManager em;
 
     public StudentDaoImp() {
+        em = Persistence.createEntityManagerFactory("pu1").createEntityManager();
     }
 
     @Override
@@ -45,7 +50,8 @@ public class StudentDaoImp implements StudentDao {
 
     @Override
     public List<Student> getAllStudents() {
-        return emd.createQuery("SELECT S FROM Student S").getResultList();
+        List<Student> resultList = em.createQuery("SELECT S FROM Student S").setHint(QueryHints.REFRESH, true).getResultList();
+        return resultList;
 //        TypedQuery<Student> query = emd.createQuery("SELECT S FROM Student S", Student.class);
 //        List<Student> resultList = query.getResultList();
 //        resultList.forEach(t -> {

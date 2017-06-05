@@ -15,6 +15,8 @@ app.controller("ListCtrl", function ($scope, $http) {
         };
     };
 
+    loadStudents();
+
     $scope.orderBy = function (field) {
         console.log($scope.genders);
         $scope.orderedBy = field;

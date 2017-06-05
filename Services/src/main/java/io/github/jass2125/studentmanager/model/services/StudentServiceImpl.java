@@ -9,8 +9,8 @@ import io.github.jass2125.studentmanager.beans.StudentDao;
 import io.github.jass2125.studentmanager.model.dao.StudentDaoImp;
 import io.github.jass2125.studentmanager.model.entity.Student;
 import io.github.jass2125.studentmanager.model.exceptions.PersistenceException;
-import java.util.Collections;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 
@@ -24,7 +24,8 @@ import javax.ejb.Stateless;
 @Local(StudentService.class)
 public class StudentServiceImpl implements StudentService {
 
-    private StudentDao repository = new StudentDaoImp();
+    @EJB
+    private StudentDao repository;
 
     @Override
     public Student saveStudent(Student student) {
@@ -38,8 +39,6 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<Student> getAll() {
-//        System.out.println("sdfsd");
-//        return Collections.EMPTY_LIST;
         return repository.getAllStudents();
     }
 
