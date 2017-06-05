@@ -1,9 +1,87 @@
-<div id="myModal" class="modal fade" role="dialog">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h4>Modal Header</h4>
-			</div>
-		</div>
-	</div>
-</div>
+<form name="studentForm" class="form-horizontal">
+    <div class="form-group">
+        <label class="control-label">Name</label>
+        <input class="form-control" type="text" ng-model="student.name" required="true" name="name">
+        <div ng-if="studentForm.name.$dirty" ng-messages="studentForm.name.$error" >
+            <div ng-message="required" class="alert alert-danger">
+                Please fill out this field.
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label">CPF</label>
+        <input type="text" class="form-control" ng-model="student.cpf" name="cpf" ng-required="true" ng-pattern="/^\d{9}-\d{2}$/"/>
+
+        <div ng-if="studentForm.cpf.$dirty" ng-messages="studentForm.cpf.$error">
+            <div class="alert alert-danger" ng-message="required">
+                Please fill out this field.	
+            </div>
+            <div ng-message="pattern" class="alert alert-danger">
+                Format: XXXXXXXXX-XX
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">Gender</label>
+        <select ng-model="student.gender" name="gender" ng-required="true" class="form-control" ng-options="gender.desc for gender in genders">
+            <option value="">Select a gender</option>
+            <option>{{gender.desc}}</option>
+        </select>
+
+        <div ng-if="studentForm.gender.$dirty" ng-messages="studentForm.gender.$error">
+            <div class="alert alert-danger" ng-message="required">
+                Please select out this field.	
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">Identify Number</label>
+        <input class="form-control" type="text" ng-model="student.identifyNumber" ng-required="true" 
+               ng-pattern="/^\d{13}$/" name="identifyNumber"/>
+
+        <div ng-if="studentForm.identifyNumber.$dirty" ng-messages="studentForm.identifyNumber.$error">
+            <div class="alert alert-danger" ng-message="required">
+                Please select out this field.	
+            </div>
+            <div class="alert alert-danger" ng-message="pattern">
+                Only permitted until 13 numbers	
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">Military Document Number</label>
+        <input type="text" class="form-control" ng-model="student.militaryDocumentNumber" name="militaryDocumentNumber" ng-required="true"/>
+        <div ng-if="studentForm.militaryDocumentNumber.$dirty" ng-messages="studentForm.militaryDocumentNumber.$error">
+            <div class="alert alert-danger" ng-message="required">
+                Please fill out this field.	
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">Nacionality</label>
+        <input class="form-control" type="text" ng-model="student.nacionality" name="nacionality" ng-required="true"/>
+        <div ng-if="studentForm.nacionality.$dirty" ng-messages="studentForm.nacionality.$error">
+            <div class="alert alert-danger" ng-message="required">
+                Please fill out this field.	
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">Birthday</label>
+        <input class="form-control" type="text" ng-model="student.birthday" ng-required="true" name="birthday"/>
+        <div ng-if="studentForm.birthday.$dirty" ng-messages="studentForm.birthday.$error">
+            <div class="alert alert-danger" ng-message="required">
+                Please fill out this field.	
+            </div>
+        </div>
+    </div>
+
+
+
+    <button class="btn btn-primary" ng-click="addStudent(student);" ng-disabled="studentForm.$invalid">Submit</button>
+</form>

@@ -28,7 +28,7 @@ public class ApplicationConfig extends Application {
     }
 
     private void addResources(Set<Class<?>> set) {
-        set.add(CorsFilter.class);
+//        set.add(CorsFilter.class);
         set.add(StudentWebService.class);
     }
 

@@ -1,7 +1,5 @@
-<<<<<<< HEAD
 *.class
-
-=======
+Web/nbproject/
 # Compiled class file
 *.class
 
@@ -11,7 +9,6 @@
 # BlueJ files
 *.ctxt
 
->>>>>>> 2c8e90161b2b8fa8022cbd1174f40d483fec2075
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
@@ -19,7 +16,6 @@
 *.jar
 *.war
 *.ear
-<<<<<<< HEAD
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
@@ -28,11 +24,11 @@ hs_err_pid*
 /Services/docs
 /Web/nbproject/private/
 /Web/bower_components/
-=======
+Web/nbproject/
+
 *.zip
 *.tar.gz
 *.rar
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
->>>>>>> 2c8e90161b2b8fa8022cbd1174f40d483fec2075

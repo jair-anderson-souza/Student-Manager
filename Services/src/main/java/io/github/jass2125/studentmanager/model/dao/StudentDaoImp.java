@@ -12,7 +12,8 @@ import java.util.List;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -22,17 +23,18 @@ import javax.persistence.Persistence;
 @Remote(StudentDao.class)
 public class StudentDaoImp implements StudentDao {
 
-    private EntityManager em = Persistence.createEntityManagerFactory("pu").createEntityManager();
+    @PersistenceContext
+    private EntityManager em;
+
+    public StudentDaoImp() {
+    }
 
     @Override
     public Student save(Student student) throws PersistenceException {
         try {
-            em.getTransaction().begin();
             em.persist(student);
-            em.getTransaction().commit();
             return student;
         } catch (Exception e) {
-            em.getTransaction().rollback();
             throw new PersistenceException(e, "Verifique os dados e tente novamente.");
         }
     }
@@ -44,7 +46,12 @@ public class StudentDaoImp implements StudentDao {
 
     @Override
     public List<Student> getAllStudents() {
-        return em.createQuery("SELECT S FROM Student S").getResultList();
+        TypedQuery<Student> query = em.createQuery("SELECT S FROM Student S", Student.class);
+        List<Student> resultList = query.getResultList();
+        resultList.forEach(t -> {
+            System.out.println(t);
+        });
+        return resultList;
     }
 
     @Override
@@ -64,12 +71,9 @@ public class StudentDaoImp implements StudentDao {
     @Override
     public Student update(Student student) {
         try {
-            em.getTransaction().begin();
             em.merge(student);
-            em.getTransaction().commit();
             return student;
         } catch (Exception e) {
-            em.getTransaction().rollback();
             return null;
         }
     }
