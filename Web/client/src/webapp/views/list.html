@@ -12,7 +12,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="student in students| orderBy:orderedBy:inverse | filter:{name : search}">
+        <tr ng-repeat="student in students | orderBy:orderedBy:inverse | filter:{name : search}">
             <td>{{student.name}}</td>
             <td>{{student.cpf}}</td>
             <td>{{student.gender}}</td>

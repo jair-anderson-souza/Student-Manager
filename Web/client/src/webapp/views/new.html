@@ -24,9 +24,8 @@
 
     <div class="form-group">
         <label class="control-label">Gender</label>
-        <select ng-model="student.gender" name="gender" ng-required="true" class="form-control" ng-options="gender.desc for gender in genders">
+        <select ng-model="student.gender" name="gender" ng-required="true" class="form-control" ng-options="gender for gender in genders">
             <option value="">Select a gender</option>
-            <option>{{gender.desc}}</option>
         </select>
 
         <div ng-if="studentForm.gender.$dirty" ng-messages="studentForm.gender.$error">
