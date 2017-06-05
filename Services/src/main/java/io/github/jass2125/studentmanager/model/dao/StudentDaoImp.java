@@ -9,9 +9,8 @@ import io.github.jass2125.studentmanager.beans.StudentDao;
 import io.github.jass2125.studentmanager.model.entity.Student;
 import io.github.jass2125.studentmanager.model.exceptions.PersistenceException;
 import java.util.List;
-import javax.ejb.Remote;
-import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
@@ -19,12 +18,10 @@ import javax.persistence.TypedQuery;
  *
  * @author Anderson Souza
  */
-@Stateless
-@Remote(StudentDao.class)
 public class StudentDaoImp implements StudentDao {
+//
 
-    @PersistenceContext
-    private EntityManager em;
+    private EntityManager emd = Persistence.createEntityManagerFactory("pu1").createEntityManager();
 
     public StudentDaoImp() {
     }
@@ -32,7 +29,7 @@ public class StudentDaoImp implements StudentDao {
     @Override
     public Student save(Student student) throws PersistenceException {
         try {
-            em.persist(student);
+//            em.persist(student);
             return student;
         } catch (Exception e) {
             throw new PersistenceException(e, "Verifique os dados e tente novamente.");
@@ -41,29 +38,33 @@ public class StudentDaoImp implements StudentDao {
 
     @Override
     public Student getById(Long id) {
-        return em.find(Student.class, id);
+        System.out.println("sdfsd");
+        return null;
+//        return em.find(Student.class, id);
     }
 
     @Override
     public List<Student> getAllStudents() {
-        TypedQuery<Student> query = em.createQuery("SELECT S FROM Student S", Student.class);
-        List<Student> resultList = query.getResultList();
-        resultList.forEach(t -> {
-            System.out.println(t);
-        });
-        return resultList;
+        return emd.createQuery("SELECT S FROM Student S").getResultList();
+//        TypedQuery<Student> query = emd.createQuery("SELECT S FROM Student S", Student.class);
+//        List<Student> resultList = query.getResultList();
+//        resultList.forEach(t -> {
+//            System.out.println(t);
+//        });
+//        return resultList;
+//        return null;
     }
 
     @Override
     public Student delete(Long id) {
         Student student = getById(id);
         try {
-            em.getTransaction().begin();
-            em.remove(em.find(Student.class, id));
-            em.getTransaction().commit();
+//            em.getTransaction().begin();
+//            em.remove(em.find(Student.class, id));
+//            em.getTransaction().commit();
             return student;
         } catch (Exception e) {
-            em.getTransaction().rollback();
+//            em.getTransaction().rollback();
         }
         return null;
     }
@@ -71,7 +72,7 @@ public class StudentDaoImp implements StudentDao {
     @Override
     public Student update(Student student) {
         try {
-            em.merge(student);
+//            em.merge(student);
             return student;
         } catch (Exception e) {
             return null;

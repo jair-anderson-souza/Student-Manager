@@ -33,7 +33,7 @@ public class StudentWebService {
 
     @EJB
     private StudentService service;
-    
+
     @GET
     public GenericEntity<List<Student>> getAllStudents() {
         List<Student> list = service.getAll();

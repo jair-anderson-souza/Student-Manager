@@ -6,7 +6,7 @@
 package io.github.jass2125.studentmanager.model.services;
 
 import io.github.jass2125.studentmanager.beans.StudentDao;
-import javax.ejb.EJB;
+import io.github.jass2125.studentmanager.model.dao.StudentDaoImp;
 import io.github.jass2125.studentmanager.model.entity.Student;
 import io.github.jass2125.studentmanager.model.exceptions.PersistenceException;
 import java.util.Collections;
@@ -24,9 +24,9 @@ import javax.ejb.Stateless;
 @Local(StudentService.class)
 public class StudentServiceImpl implements StudentService {
 
-    @EJB
-    private StudentDao repository;
+    private StudentDao repository = new StudentDaoImp();
 
+    @Override
     public Student saveStudent(Student student) {
         try {
             return repository.save(student);
@@ -36,20 +36,24 @@ public class StudentServiceImpl implements StudentService {
         return null;
     }
 
+    @Override
     public List<Student> getAll() {
-        System.out.println("sdfsd");
-        return Collections.EMPTY_LIST;
-//        return repository.getAllStudents();
+//        System.out.println("sdfsd");
+//        return Collections.EMPTY_LIST;
+        return repository.getAllStudents();
     }
 
+    @Override
     public Student getStudentById(Long id) {
         return repository.getById(id);
     }
 
+    @Override
     public Student delete(Long id) {
         return repository.delete(id);
     }
 
+    @Override
     public Student update(Student student) {
         return repository.update(student);
     }
