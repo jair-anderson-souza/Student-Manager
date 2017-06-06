@@ -1,7 +1,6 @@
 var app = angular.module("App", ["ngMessages", "ngRoute"]);
 
 app.controller("AppCtrl",function($scope){
-	
     $scope.genders = ["MALE",  "FEMALE"];
 });
 

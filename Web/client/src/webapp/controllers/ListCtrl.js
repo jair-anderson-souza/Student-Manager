@@ -3,10 +3,12 @@ var app = angular.module("App");
 app.controller("ListCtrl", function ($scope, studentAPI) {
 
     var loadStudents = function () {
+        $scope.message = "";
         studentAPI.students().then(function (response) {
             $scope.students = response.data;
         }), function (response) {
             console.log("erro");
+            $scope.message = "Error on show list!";
         };
     };
 

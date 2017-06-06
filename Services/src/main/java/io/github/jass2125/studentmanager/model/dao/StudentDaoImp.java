@@ -11,10 +11,7 @@ import io.github.jass2125.studentmanager.model.exceptions.PersistenceException;
 import java.util.List;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.FlushModeType;
 import javax.persistence.Persistence;
 import org.eclipse.persistence.config.QueryHints;
 
