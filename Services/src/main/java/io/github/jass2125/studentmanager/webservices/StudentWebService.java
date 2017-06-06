@@ -50,6 +50,7 @@ public class StudentWebService {
 
     @POST
     public Student registerStudent(Student student) {
+        System.out.println("sdjhf");
         return service.saveStudent(student);
     }
 

@@ -11,7 +11,10 @@ import io.github.jass2125.studentmanager.model.exceptions.PersistenceException;
 import java.util.List;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.FlushModeType;
 import javax.persistence.Persistence;
 import org.eclipse.persistence.config.QueryHints;
 
@@ -22,12 +25,10 @@ import org.eclipse.persistence.config.QueryHints;
 @Stateless
 @Remote(StudentDao.class)
 public class StudentDaoImp implements StudentDao {
-//
 
-    private EntityManager em;
+    private EntityManager em = Persistence.createEntityManagerFactory("pu1").createEntityManager();
 
     public StudentDaoImp() {
-        em = Persistence.createEntityManagerFactory("pu1").createEntityManager();
     }
 
     @Override
@@ -35,16 +36,19 @@ public class StudentDaoImp implements StudentDao {
         try {
             em.getTransaction().begin();
             em.persist(student);
+            em.flush();
             em.getTransaction().commit();
             return student;
         } catch (Exception e) {
+            e.printStackTrace();
             em.getTransaction().rollback();
             throw new PersistenceException(e, "Verifique os dados e tente novamente.");
         }
     }
 
     @Override
-    public Student getById(Long id) {
+    public Student getById(Long id
+    ) {
         System.out.println("sdfsd");
         return null;
 //        return em.find(Student.class, id);
@@ -64,7 +68,8 @@ public class StudentDaoImp implements StudentDao {
     }
 
     @Override
-    public Student delete(Long id) {
+    public Student delete(Long id
+    ) {
         Student student = getById(id);
         try {
 //            em.getTransaction().begin();
@@ -78,7 +83,8 @@ public class StudentDaoImp implements StudentDao {
     }
 
     @Override
-    public Student update(Student student) {
+    public Student update(Student student
+    ) {
         try {
 //            em.merge(student);
             return student;

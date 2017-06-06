@@ -1,10 +1,10 @@
 var app = angular.module("App");
 
-app.controller("NewCtrl", function ($scope, $http) {
+app.controller("NewCtrl", function ($scope, studentAPI) {
 
     $scope.addStudent = function (student) {
-        $http.post("http://localhost:8080/WebServices/webapi/student", student)
-            .then(function(response){
+        studentAPI.saveStudent(student).
+            then(function(response){
                 console.log(response.status);
                 delete $scope.student;
                 $scope.studentForm.$setPristine();

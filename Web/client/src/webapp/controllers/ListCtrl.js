@@ -1,9 +1,9 @@
 var app = angular.module("App");
 
-app.controller("ListCtrl", function ($scope, $http) {
+app.controller("ListCtrl", function ($scope, studentAPI) {
 
     var loadStudents = function () {
-        $http.get("http://localhost:8080/WebServices/webapi/student").then(function (response) {
+        studentAPI.students().then(function (response) {
             $scope.students = response.data;
         }), function (response) {
             console.log("erro");

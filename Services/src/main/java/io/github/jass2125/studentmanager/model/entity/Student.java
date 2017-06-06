@@ -17,6 +17,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
 /**
  *
@@ -24,10 +25,11 @@ import javax.persistence.Id;
  * @since Apr 21, 2017 0:30:12 AM
  */
 @Entity
+@SequenceGenerator(allocationSize = 1, initialValue = 1, name = "student_seq")
 public class Student implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_seq")
     private Long id;
 
     @Column(length = 40)
