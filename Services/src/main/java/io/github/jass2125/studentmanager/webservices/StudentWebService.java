@@ -37,6 +37,7 @@ public class StudentWebService {
     @GET
     public GenericEntity<List<Student>> getAllStudents() {
         List<Student> list = service.getAll();
+        System.out.println(list.size());
         return new GenericEntity<List<Student>>(list) {
         };
     }

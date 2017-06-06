@@ -6,7 +6,6 @@
 package io.github.jass2125.studentmanager.model.services;
 
 import io.github.jass2125.studentmanager.beans.StudentDao;
-import io.github.jass2125.studentmanager.model.dao.StudentDaoImp;
 import io.github.jass2125.studentmanager.model.entity.Student;
 import io.github.jass2125.studentmanager.model.exceptions.PersistenceException;
 import java.util.List;

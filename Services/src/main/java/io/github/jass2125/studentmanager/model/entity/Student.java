@@ -139,10 +139,7 @@ public class Student implements Serializable {
             return false;
         }
         final Student other = (Student) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.id, other.id);
     }
 
     @Override

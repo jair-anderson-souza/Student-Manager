@@ -13,7 +13,6 @@ import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
-import javax.persistence.QueryHint;
 import org.eclipse.persistence.config.QueryHints;
 
 /**
@@ -34,9 +33,12 @@ public class StudentDaoImp implements StudentDao {
     @Override
     public Student save(Student student) throws PersistenceException {
         try {
-//            em.persist(student);
+            em.getTransaction().begin();
+            em.persist(student);
+            em.getTransaction().commit();
             return student;
         } catch (Exception e) {
+            em.getTransaction().rollback();
             throw new PersistenceException(e, "Verifique os dados e tente novamente.");
         }
     }
