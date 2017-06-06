@@ -25,10 +25,10 @@ Create a database 'app'
 Run /Services folder on IDE
 
 **Fifth Step**
-Install [NPM](https://www.npmjs.com/)
+Install NPM
 
 **Sixth Step**
-Install [Serve](https://www.npmjs.com/package/serve)
+Install Serve
 
 **Seventh Step**
 Inside folder 'Student-Manager/Web/client', run 'serve'
